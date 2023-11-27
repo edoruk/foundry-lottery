@@ -1,17 +1,21 @@
-## Foundry
+# Usage
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### For Testnet
 
-Foundry consists of:
+Need to install `@chainlink` library and create, add fund and add consumer from chainlink.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### For local
 
-## Documentation
+There is a script file named Interactions.s.sol which is used for creating, funding and adding consumer locally.
+`test/mock/VRfCoordinatorV2Mock.sol` is used for these functions.
 
-https://book.getfoundry.sh/
+## Quickstart
+
+```shell
+git clone https://github.com/edoruk/foundry-lottery/
+cd foundry-lottery
+forge build
+```
 
 ## Usage
 
@@ -33,12 +37,6 @@ $ forge test
 $ forge fmt
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
 ### Anvil
 
 ```shell
@@ -47,8 +45,19 @@ $ anvil
 
 ### Deploy
 
+#### Deploy and Verify on Sepolia Testnet
+
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ 	forge script script/DeployLottery.s.sol:DeployLottery --rpc-url ${RPC_URL_SEP} --private-key ${PRIVATE_KEY_SEP} --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY}
+
+```
+
+#### Deploy and Verify on Anvil
+
+```shell
+$ 	forge script script/DeployLottery.s.sol:DeployLottery --rpc-url ${RPC_URL} --private-key ${PRIVATE_KEY} --broadcast
+
+
 ```
 
 ### Cast
